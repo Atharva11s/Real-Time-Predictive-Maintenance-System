@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machine Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial;
+            margin: 0;
+            display: flex;
+        }
+
+        /* LEFT PANEL */
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background: #1e1e1e;
+        }
+
+        /* RIGHT PANEL */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .chart-container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        canvas {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 10px;
+            height: 300px !important;
+        }
+
+        #alert {
+            font-size: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        /* STATES */
+        .normal {
+            background: #1f3d1f;
+            color: #00ff88;
+        }
+
+        .suspect {
+            background: #3d3a1f;
+            color: #ffcc00;
+        }
+
+        .critical {
+            background: #3d1f1f;
+            color: #ff4d4d;
+        }
+
+        button {
+            padding: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Manual Thresholds</h2>
+        <button id="toggleBtn" onclick="toggleLive()">⏸ Pause</button><br>
+        <label>Temperature Threshold</label><br>
+        <input type="range" min="30" max="50" step="0.5" value="35" id="tempThreshold">
+        <p>Current Temperature: <span id="tempLive">35</span></p>
+
+        <label>Vibration Threshold</label><br>
+        <input type="range" min="1" max="3" step="0.1" value="1.5" id="vibThreshold">
+        <p>Current Threshold: <span id="vibLive">1.5</span></p>
+    </div>
+
+    <!-- MAIN -->
+    
+    <div class="main">
+
+        <h1>Predictive Maintanance System</h1>
+
+        <div style="display: flex;">
+
+            <!-- LEFT -->
+            <div style="flex: 3;">
+                <div class="chart-container">
+                    <canvas id="tempChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="vibrationChart"></canvas>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div style="flex: 1; padding: 20px;">
+                <h2>System Alerts</h2>
+                <div id="alert"></div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="/static/script.js"></script>
+
+
+</body>
+
+
+</html>
